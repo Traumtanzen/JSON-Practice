@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,15 @@ namespace JsonPractice
             {
                 Console.WriteLine(item.author);
             }
-            //Console.WriteLine(news);
+            var pictures = newsObject.articles.Where(p => p.urlToImage != null);
+            var imgName = 0;
+            foreach (var pic in pictures)
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.DownloadFileAsync(new Uri(pic.urlToImage.ToString()), imgName++.ToString());
+                }
+            }
             Console.ReadLine();
         }
 
