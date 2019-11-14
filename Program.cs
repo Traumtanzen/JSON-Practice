@@ -32,7 +32,7 @@ namespace JsonPractice
             {
                 using (WebClient webClient = new WebClient())
                 {
-                    webClient.DownloadFileAsync(new Uri(pic.urlToImage.ToString()), imgName++.ToString());
+                    webClient.DownloadFileAsync(new Uri(pic.urlToImage.ToString()), (imgName++.ToString()+".jpg"));
                 }
             }
             Console.ReadLine();
